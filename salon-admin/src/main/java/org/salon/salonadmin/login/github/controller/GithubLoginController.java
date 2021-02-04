@@ -1,7 +1,10 @@
 package org.salon.salonadmin.login.github.controller;
 
+import org.salon.salonadmin.login.github.service.GithubLoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.Resource;
 
 /**
  * @author yangxin
@@ -11,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("oath")
 public class GithubLoginController {
+    @Resource
+    private GithubLoginService githubLoginService;
 
     @RequestMapping("redirect")
-    public void redirect() {
-
+    public void redirect(String code) {
+        githubLoginService.login(code);
     }
 }
